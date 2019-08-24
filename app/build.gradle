@@ -4,14 +4,19 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
+
 android {
-    compileSdkVersion 28
+    compileSdkVersion build_versions.target_sdk
+    kapt { generateStubs = true }
     defaultConfig {
         applicationId "com.sunasterisk.tuandao.productdiscovery"
-        minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode build_versions.versionCode
+        versionName build_versions.versionName
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -20,14 +25,68 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    androidExtensions {
+        experimental = true
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Support libraries
+    implementation dep.support_lib.appcompat_v7
+    implementation dep.support_lib.support_v4
+    implementation dep.support_lib.design
+    implementation dep.support_lib.card_view
+    implementation dep.support_lib.constraint_layout
+    implementation dep.support_lib.glide
+    implementation dep.support_lib.annotations
+    implementation dep.support_lib.material_desgin
+    implementation dep.support_lib.search_view
+    implementation dep.support_lib.preference
+
+    //Kotlin
+    implementation dep.kotlin.stdlib
+
+    // Rx
+    implementation dep.rx.rx_andrdroid
+    implementation dep.rx.rx_kotlin
+
+    // Retrofit
+    implementation dep.retrofit.retrofit
+    implementation dep.retrofit.converter_gson
+    implementation dep.retrofit.logging_interceptor
+    implementation dep.retrofit.adapter_rx_java2
+    implementation dep.retrofit.mock
+
+    //Lifecycle
+    implementation dep.lifecycle.extensions
     implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    kapt dep.lifecycle.reactivestreams
+
+    // Dagger
+    implementation dep.dagger.dagger
+    implementation dep.dagger.dagger_android
+    implementation dep.dagger.dagger_android_support
+    kapt dep.dagger.dagger_android_processor
+    kapt dep.dagger.dagger_compiler
+
+    // Room
+    implementation dep.room.runtime
+    implementation dep.room.room_rx
+    kapt dep.room.compile
+
+    // Test
+    androidTestImplementation dep.test.runner
+    androidTestImplementation dep.test.espersso
+    testImplementation dep.junit
 }
