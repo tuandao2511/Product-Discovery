@@ -1,6 +1,7 @@
 package com.sunasterisk.tuandao.productdiscovery.screen.base.recyclerview
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
 import com.sunasterisk.tuandao.productdiscovery.utils.define.notNull
@@ -41,6 +42,7 @@ abstract class BaseRecyclerViewAdapter<T, V : RecyclerView.ViewHolder> construct
 
     fun refreshData(data: MutableList<T>) {
         data.notNull {
+            Log.d("refreshData"," data $data")
             lastPosition = DEFAULT_LAST_POSITION
             listData.clear()
             listData.addAll(it)

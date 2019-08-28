@@ -1,13 +1,13 @@
 package com.sunasterisk.tuandao.productdiscovery.screen.base.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import dagger.android.support.DaggerAppCompatActivity
 
 /**
  * Created by tuan-dao on 24/08/2019.
  * dao.tuan.anh@sun-asterisk.com
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initComponents(savedInstanceState)

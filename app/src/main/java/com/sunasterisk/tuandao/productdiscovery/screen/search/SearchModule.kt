@@ -1,6 +1,9 @@
 package com.sunasterisk.tuandao.productdiscovery.screen.search
 
+import androidx.lifecycle.ViewModelProviders
+import com.sunasterisk.tuandao.productdiscovery.utils.ViewModelFactory
 import dagger.Module
+import dagger.Provides
 import java.lang.annotation.Documented
 import javax.inject.Scope
 
@@ -10,6 +13,10 @@ import javax.inject.Scope
  */
 @Module
 class SearchModule {
+    @SearchActivityScope
+    @Provides
+    fun provideViewModel(searchActivity: SearchActivity, viewModelFactory: ViewModelFactory) =
+        ViewModelProviders.of(searchActivity, viewModelFactory).get(SearchViewModel::class.java)
 }
 
 @Scope
