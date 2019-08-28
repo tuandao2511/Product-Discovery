@@ -10,8 +10,7 @@ import io.reactivex.disposables.CompositeDisposable
  * dao.tuan.anh@sun-asterisk.com
  */
 open class BaseViewModel(application: Application) :
-    AndroidViewModel(application),
-    LifecycleObserver {
+    AndroidViewModel(application), LifecycleObserver{
 
     protected val compositeDisposable = CompositeDisposable()
 

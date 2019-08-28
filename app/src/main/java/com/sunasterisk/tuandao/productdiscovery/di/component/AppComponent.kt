@@ -6,6 +6,7 @@ import com.sunasterisk.tuandao.productdiscovery.data.repository.DetailRepository
 import com.sunasterisk.tuandao.productdiscovery.data.repository.SearchRepository
 import com.sunasterisk.tuandao.productdiscovery.di.module.ActivityBuildersModule
 import com.sunasterisk.tuandao.productdiscovery.di.module.ApplicationModule
+import com.sunasterisk.tuandao.productdiscovery.di.module.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -19,7 +20,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [AndroidSupportInjectionModule::class, ApplicationModule::class,
-        ActivityBuildersModule::class])
+        ActivityBuildersModule::class, ViewModelModule::class])
 interface AppComponent : AndroidInjector<PDApp> {
 
     fun getSearchRepository(): SearchRepository
