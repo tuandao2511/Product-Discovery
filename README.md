@@ -10,10 +10,10 @@
 ### Cấu trúc project gồm:
 * data: bao gồm một số model, cung cấp các api sử dụng retrofit, các thành phần khác muốn sử dụng các api này phaỉ thông qua các respository
 * di: chứa các thiết lập dagger ở đây cũng chứa một số dependency tồn tại trong toàn app
-* screen: chứa màn hình search và detail
+* screen: chứa màn hình search và detail và các logic của màn hình
 * utils: cung cấp một số utils được sử dụng cho toàn app như Extension, StringUtils, Constant...
 ### Hướng tiếp cận:
-- Màn hinh search: user nhập vào keyword --> view model sẽ xử lý request thông qua repository --> repository tương tác với api, và sẽ trả về thành công hay thất bại cho view model --> view observe data thay đổi trong view model và update ui sử dụng databiding...
+- Màn hình search: user nhập vào keyword --> view model sẽ xử lý request thông qua repository --> repository tương tác với api, và sẽ trả về thành công hay thất bại cho view model --> view observe data thay đổi trong view model và update ui sử dụng databinding...
 - Xử lý search: mục đích là hạn chế số request cần gửi khi search, giả dụ người dùng nhập vào abc trong một khoảng thời gian nhanh (trong app là 500 millisecond) thay vì gửi lần lượt request a ab abc  thì chỉ gửi 1 request abc.Trường hợp người dùng nhập vào abc,bỏ c và nhập lại c trong 500 millisecond thì sẽ không có request nào được thực hiện ( sử dụng distinctUntilChanged() )
 
 ```kotlin
